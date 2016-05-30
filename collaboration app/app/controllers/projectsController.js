@@ -4,6 +4,7 @@ var User = require("../models/user");
 function projectsIndex(req, res){
   Project.find({}, function(err, projects) {
     if (err) return res.status(404).send(err);
+    console.log(projects);
     res.status(200).send(projects);
   });
 }

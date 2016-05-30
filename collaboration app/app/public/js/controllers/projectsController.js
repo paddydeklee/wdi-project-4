@@ -2,11 +2,11 @@ angular
   .module('logging')
   .controller('ProjectsController', ProjectsController);
 
-ProjectsController.$inject = ['$scope', '$http'];
-function ProjectsController($scope, $http){
+ProjectsController.$inject = ['$scope', '$http', 'Project'];
+function ProjectsController($scope, $http, Project){
 
   var self              = this;
-  self.projects         = [];
+  self.all              = [];
   self.project          = {};
   self.createProject    = createProject;
   // self.toggleAddProject = toggleAddProject;
@@ -15,6 +15,13 @@ function ProjectsController($scope, $http){
   // function toggleAddProject(){
   //   $("form#new-project").slideToggle("slow");
   // }
+
+  function getProjects() {
+    console.log("gettin da pojex")
+    Project.query(function(data){
+      self.all = data;
+    });
+  }
 
   function createProject(){
     var data = {
@@ -41,5 +48,5 @@ function ProjectsController($scope, $http){
   //       user.projects.splice(index, 1);
   //     });
   // }
-
+  getProjects();
 }

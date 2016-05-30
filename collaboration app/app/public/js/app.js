@@ -36,7 +36,9 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     })
     .state('projects', {
       url: "/projects",
-      templateUrl: "./js/views/projects/index.html"
+      templateUrl: "./js/views/projects/index.html",
+      controller: "ProjectsController",
+      controllerAs: "projects"
     })
     .state('project', {
       url: "/projects/:id",
