@@ -1,0 +1,15 @@
+<h1>Projects Index</h1>
+<h4>Pick from a list of projects below</h4>
+<ul class="media-list">
+  <li class="media" ng-repeat="project in projects.all">
+    <div class="media-left">
+      <a ui-sref="project({ id: project._id })">
+        <img class="media-object" ng-src="{{ project.local.id }}">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{ project.local.title }}</h4>
+      <p>{{ project.local.description }}</p>
+    </div>
+  </li>
+</ul>

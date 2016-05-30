@@ -1,0 +1,50 @@
+<h1>Home</h1>
+<!-- <body ng-controller="UsersController as users"> -->
+  <main ng-controller="ProjectsController as projects">
+
+
+
+    <form id="new-project" ng-submit="projects.createProject()">
+      <input type="text" name='project-title' id="project-title" placeholder="Title" ng-model="projects.project.title">
+      <input type="text" name='project-description' id="project-description" placeholder="Description" ng-model="projects.project.description">
+      <input type="file" name='project-file' id="project-file" placeholder="Github" ng-model="projects.project.file">
+      <input type="submit" value='Save' id="submit">
+    </form>
+
+
+
+    <!-- <div id="users">
+      <div class='user-tile' ng-repeat='user in users.users'>
+        <img ng-src='{{user.image}}'>
+        <h2>{{ user.name}}</h2>
+        <p>{{ user.bio }}</p>
+        <a href='https://github.com/{{user.github}}'>Github</a> | <a href='{{user.portfolio}}'>Portfolio</a>
+        <br><a ng-click="users.removeUser(user)" class='delete' href='#'>Delete</a> | <a ng-click="users.showUser(user)" class='show' href='#'>Show</a> | <a ng-click="users.editUser(user)" href='#' class='edit'>Edit</a>
+      </div>
+    </div> -->
+
+    <!-- <div id="show">
+      <div class='user-tile' data-id="{{users.user._id}}">
+        <img ng-src='{{users.user.image}}'>
+        <h2 id='username'>{{users.user.name}}</h2>
+        <p>{{users.user.bio}}</p>
+        <a href='https://github.com/{{users.user.github}}'>Github</a> | <a href='{{users.user.portfolio}}'>Portfolio</a>
+      </div>
+    </div>
+
+    <div id="projects">
+      <ul>
+        <li ng-repeat="project in users.user.projects">
+          <div class='project-tile'>
+            <h2>{{ project.title }}</h2>
+            <p>{{project.description}}</p>
+            <a href='https://github.com/{{project.github}}'>Github</a> | <a href='{{project.website}}'>Website</a> | <a ng-click="projects.removeProject(project)" href="#">Delete</a>
+          </div>
+        </li>
+      </ul>
+      <div ng-click="projects.toggleAddProject()" class='project-tile'>
+        <h2><a href='#'>Add a project +</a></h2>
+      </div> -->
+    </div>
+
+  </main>
