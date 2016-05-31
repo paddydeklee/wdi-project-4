@@ -1,3 +1,14 @@
 .media-object {
   max-width: 60px;
 }
+
+body{
+  background-color: none;
+  overflow: hidden;
+}
+
+.renderZone{
+  background-color: white;
+  width: 300px;
+  height: 300px;
+}
