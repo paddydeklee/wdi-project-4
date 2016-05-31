@@ -30,11 +30,11 @@ function MainRouter($stateProvider, $urlRouterProvider) {
         });
       }
     })
-    .state('projects', {
+    .state('projectsIndex', {
       url: "/projects",
       templateUrl: "./js/views/projects/index.html",
-      controller: "ProjectsController",
-      controllerAs: "projects"
+      controller: "projectsIndexController",
+      controllerAs: "projectsIndex"
     })
     .state('projectsNew', {
       url: "/projects/new",
@@ -42,9 +42,11 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       controller: "projectsNewController",
       controllerAs: "projectsNew"
     })
-    .state('project', {
+    .state('projectsShow', {
       url: "/projects/:id",
       templateUrl: "./js/views/projects/show.html",
+      controller: "projectsShowController",
+      controllerAs: "projectsShow"
     });
 
   $urlRouterProvider.otherwise("/");

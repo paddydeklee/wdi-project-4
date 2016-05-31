@@ -2,7 +2,6 @@
 var multer   = require('multer');
 var multerS3 = require('multer-s3');
 var aws      = require('aws-sdk')
-var uuid     = require('uuid');
 var config   = require("../config/config");
 
 var s3       = new aws.S3({

@@ -40,11 +40,6 @@ router.post('/upload/single', upload.single('file'), function(req, res) {
 });
 
 // This will upload multiple files.
-router.post('/upload/multi', upload.array('files'), function(req, res) {
-  filenames = Object.keys(req.files).map(function(key) {
-    return req.files[key].location;
-  });
-  res.status(200).json({ filenames: filenames });
-});
+router.post('/upload/multi', upload.array('files'), projectsController.projectsUploadMultipleFiles);
 
 module.exports = router;

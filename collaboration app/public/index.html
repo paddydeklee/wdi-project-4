@@ -28,8 +28,9 @@
   <script src="./js/models/user.js"></script>
   <script src="./js/models/project.js"></script>
   <script src="./js/controllers/usersController.js"></script>
-  <script src="./js/controllers/projectsController.js"></script>
+  <script src="./js/controllers/projectsIndexController.js"></script>
   <script src="./js/controllers/projectsNewController.js"></script>
+  <script src="./js/controllers/projectsShowController.js"></script>
   <script src="./js/controllers/mainController.js"></script>
 
   <!-- Stylesheets -->
@@ -58,7 +59,7 @@
               <a ui-sref="projectsNew">Add Project</a>
             </li>
             <li ng-show="users.checkLoggedIn()">
-              <a ui-sref="projects">Projects</a>
+              <a ui-sref="projectsIndex">Projects</a>
             </li>
             <li ng-show="users.checkLoggedIn()">
               <a ui-sref="users">Users</a>

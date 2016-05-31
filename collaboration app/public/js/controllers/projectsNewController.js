@@ -2,8 +2,8 @@ angular
   .module('collaborator')
   .controller('projectsNewController', ProjectsNewController);
 
-ProjectsNewController.$inject = ['Upload', 'API', '$http', 'Project'];
-function ProjectsNewController(Upload, API, $http, Project){
+ProjectsNewController.$inject = ['Upload', 'API', 'Project', '$state'];
+function ProjectsNewController(Upload, API, Project, $state){
   var vm = this;
 
   vm.file = null;
@@ -11,37 +11,39 @@ function ProjectsNewController(Upload, API, $http, Project){
 
   vm.create = function(){
     Project.save({ project: vm.project }).$promise.then(function(data){
-      console.log(data);
+      vm.uploadMulti(data);
     });
   };
 
-  vm.uploadSingle = function() {
-    Upload.upload({
-      url: API + '/upload/single',
-      data: { file: vm.file }
-    })
-    .then(function(res) {
-      console.log("Success!");
-      console.log(res);
-    })
-    .catch(function(err) {
-      console.error(err);
-    });
-  };
-
-  vm.uploadMulti = function() {
+  vm.uploadMulti = function(data) {
     Upload.upload({
       url: API + '/upload/multi',
       // what is the array key for??
       arrayKey: '', // IMPORTANT: without this multer will not accept the files
-      data: { files: vm.files }
+      data: {
+        files: vm.files,
+        project_id: data.project._id
+      }
     })
     .then(function(res) {
-      console.log("Success!");
-      console.log(res);
+      $state.go("projectsShow", {id: data.project._id});
     })
     .catch(function(err) {
       console.error(err);
     });
   };
+
+  // vm.uploadSingle = function() {
+  //   Upload.upload({
+  //     url: API + '/upload/single',
+  //     data: { file: vm.file }
+  //   })
+  //   .then(function(res) {
+  //     console.log("Success!");
+  //     console.log(res);
+  //   })
+  //   .catch(function(err) {
+  //     console.error(err);
+  //   });
+  // };
 }
