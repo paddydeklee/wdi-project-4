@@ -1,0 +1,36 @@
+<h2>Add Project</h2>
+
+<h3>Local</h3>
+<form id="new-project" ng-submit="projectsNew.create()" novalidate>
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" placeholder="Title" ng-model="projectsNew.project.title">
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea name='description' class="form-control" id="description" placeholder="Description" ng-model="projectsNew.project.description"></textarea>
+  </div>
+
+  <input type="submit" id="submit" class="btn btn-default" value='Save'>
+</form>
+
+<h3>Multer Single</h3>
+<form id="single-file" ng-submit="projectsNew.uploadSingle()">
+  <div class="form-group">
+    <label for="singleFile">Single file</label>
+    <input type="file" ngf-select ng-model="projectsNew.file" id="singleFile" name="file">
+    <p class="help-block">Upload a single file.</p>
+  </div>
+  <input type="submit" id="submit" class="btn btn-default" value='Upload'>
+</form>
+
+<h3>Multer Multiple</h3>
+<form name="projectsNew.multiForm" ng-submit="projectsNew.uploadMulti()">
+  <div class="form-group">
+    <label for="multipleFiles">Single file</label>
+    <input type="file" ngf-select ng-model="projectsNew.files" id="multipleFiles" name="files" ngf-multiple="true">
+    <p class="help-block">Upload multiple files.</p>
+  </div>
+  <input type="submit" id="submit" class="btn btn-default" value='Upload'>
+</form>
