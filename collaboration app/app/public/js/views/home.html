@@ -11,6 +11,21 @@
       <input type="submit" value='Save' id="submit">
     </form>
 
+    <section ng-controller="MainController as main">
+  <!-- Need to merge this functionality with the project controller?? -->
+        Upload single file on form submit
+        <form name="main.form" ng-submit="main.uploadSingle()">
+          <input type="file"ngf-select ng-model="main.file" name="file">Select File</div>
+          <button type="submit">Submit</button>
+        </form>
+        Upload multiple files on form submit
+        <form name="main.multiForm" ng-submit="main.uploadMulti()">
+          <input type="file" ngf-select ng-model="main.files" name="files" ngf-multiple="true">Select  Files</div>
+          <button type="submit">Submit</button>
+        </form>
+    </section>
+
+
 
 
     <!-- <div id="users">

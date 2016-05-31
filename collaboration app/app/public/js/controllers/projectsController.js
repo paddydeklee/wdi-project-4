@@ -17,7 +17,7 @@ function ProjectsController($scope, $http, Project){
   // }
 
   function getProjects() {
-    console.log("gettin da pojex")
+    console.log("gettin da pojex");
     Project.query(function(data){
       self.all = data;
     });

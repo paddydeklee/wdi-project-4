@@ -1,6 +1,7 @@
 angular
-  .module('logging', ['ngResource', 'angular-jwt', 'ui.router'])
+  .module('logging', ['ngResource', 'angular-jwt', 'ui.router', 'ngFileUpload'])
   .constant('API', 'http://localhost:3000/api')
+  .constant('API_URL', 'http://localhost:3000')
   .config(MainRouter)
   .config(function($httpProvider) {
   $httpProvider.interceptors.push('authInterceptor');
@@ -46,11 +47,11 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       controller: function($scope, $stateParams, Project) {
         Project.get({ id: $stateParams.id }, function(res){
           // QUESTION: What does $parent do here
-          console.log($scope, "scope");
-          console.log($parent, "parent");
-          console.log($projects, "projects");
-          console.log($project, "project");
-          $scope.$parent.projects.project = res.project;
+          // console.log($scope, "scope");
+          // // console.log($parent, "parent");
+          // console.log($projects, "projects");
+          // console.log($project, "project");
+          $scope.projects.project = res.project;
 
         });
       }
