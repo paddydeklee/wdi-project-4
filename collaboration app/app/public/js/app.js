@@ -46,7 +46,12 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       controller: function($scope, $stateParams, Project) {
         Project.get({ id: $stateParams.id }, function(res){
           // QUESTION: What does $parent do here
+          console.log($scope, "scope");
+          console.log($parent, "parent");
+          console.log($projects, "projects");
+          console.log($project, "project");
           $scope.$parent.projects.project = res.project;
+
         });
       }
     });

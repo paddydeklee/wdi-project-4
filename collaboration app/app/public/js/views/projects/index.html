@@ -8,10 +8,11 @@
       </a>
     </div>
     <div class="media-body">
-      <a ui-sref="user({ id: project._id })">
+      <a ui-sref="project({ id: project._id })">
       <h4 class="media-heading">{{ project.title }}</h4>
     </a>
       <p>{{ project.description }}</p>
+      <p>{{ project._id }}</p>
     </div>
   </li>
 </ul>
