@@ -23,6 +23,7 @@ function RendersShowController(Project, $stateParams){
   var raycaster;
   var mouse;
   var objects = [];
+  var intersections =[];
 
   init();
   animate();
@@ -108,15 +109,25 @@ function RendersShowController(Project, $stateParams){
       // raycaster is set as the normal of the mouse, through the camera's normal
       raycaster.setFromCamera( mouse, camera );
 
+      var latestSprite = 3;
       // finds the intersects between the raycaster and the intersected object
       var intersects = raycaster.intersectObjects( objects );
       if ( intersects.length > 0 ) {
         intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff );
+        console.log(intersects[0].object);
+
         var particle = new THREE.Sprite( particleMaterial );
+        particle.material.color = new THREE.Color(0x0066CC);
         particle.position.copy( intersects[ 0 ].point );
         console.log(particle.position);
-        particle.scale.x = particle.scale.y = 16;
+        particle.scale.x = particle.scale.y = particle.scale.z = 0.2;
         scene.add( particle );
+
+        // scene.children[latestSprite].push("Private Ryan");
+        latestSprite++;
+        console.log(latestSprite);
+        console.log(scene.children);
+
       }
     }
 
