@@ -12,3 +12,26 @@ body{
   width: 300px;
   height: 300px;
 }
+
+.overlay{
+  color: rgba(20,150,100,0.1);
+  position: fixed;
+  top: 60px;
+  left: 0px;
+  z-index: 103;
+  background: rgba(1,10,1,0.1);
+  /*background: -webkit-radial-gradient(right 70%,rgba(0,0,0,0.65),rgba(0,0,0,0.75),rgba(0,0,0,0.85));*/
+  /*background: radial-gradient(at right 70%,rgba(0,0,0,0.35),rgba(97, 170, 190,0.15),rgba(0,0,0,0.65));*/
+  filter: blur(5px);
+  border: solid black 0px;
+  min-height: 45%;
+  max-width: 17%;
+  float: right;
+  overflow: scroll;
+  padding: 15px;
+  text-align: left;
+  border-left: none;
+  -webkit-box-shadow: 11px 13px 44px -13px rgba(0,0,0,0.15);
+  -moz-box-shadow: 11px 13px 44px -13px rgba(0,0,0,0.15);
+  box-shadow: 11px 13px 44px -13px rgba(0,0,0,0.15);
+}
