@@ -1,5 +1,5 @@
 angular
-  .module('collaborator')
+  .module('collaborato')
   .controller('rendersShowController', RendersShowController);
 
 RendersShowController.$inject = ['Project', '$stateParams'];
@@ -29,6 +29,7 @@ function RendersShowController(Project, $stateParams){
 
   // Sets up the scene.
   function init() {
+    console.log("he;lp");
 
     // Create the scene and set the scene size.
     scene = new THREE.Scene();
@@ -37,7 +38,6 @@ function RendersShowController(Project, $stateParams){
 
     // Create a renderer and add it to the DOM.
     renderer = new THREE.WebGLRenderer({antialias:true,  alpha: true });
-
     renderer.setSize(WIDTH, HEIGHT);
     document.body.appendChild(renderer.domElement);
 
@@ -66,59 +66,7 @@ function RendersShowController(Project, $stateParams){
       var material = new THREE.MeshLambertMaterial({color: 0x55B663});
       mesh = new THREE.Mesh(geometry, material);
       scene.add(mesh);
-      objects.push(mesh);
-      console.log(objects);
     });
-
-    // new raycaster to be activated on mouse click
-    raycaster = new THREE.Raycaster();
-    console.log("Raycaster loaded", raycaster);
-
-    // vector to be drawn from the mouse normal
-    mouse = new THREE.Vector2();
-    console.log("mouse loaded", mouse);
-
-    renderer.setPixelRatio(window.devicePixelRatio);
-
-    //EVENT HANDLING
-    document.addEventListener('mousedown', onDocumentMouseDown, false);
-    document.addEventListener('touchstart', onDocumentTouchStart, false);
-    window.addEventListener('resize', onWindowResize, false);
-
-    // SIZE CONTROL
-    function onWindowResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize( window.innerWidth, window.innerHeight );
-    }
-
-    function onDocumentTouchStart( event ) {
-      event.preventDefault();
-      event.clientX = event.touches[0].clientX;
-      event.clientY = event.touches[0].clientY;
-      onDocumentMouseDown( event );
-    }
-
-    function onDocumentMouseDown( event ) {
-      console.log("hello");
-      event.preventDefault();
-      mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
-      mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
-
-      // raycaster is set as the normal of the mouse, through the camera's normal
-      raycaster.setFromCamera( mouse, camera );
-
-      // finds the intersects between the raycaster and the intersected object
-      var intersects = raycaster.intersectObjects( objects );
-      if ( intersects.length > 0 ) {
-        intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff );
-        var particle = new THREE.Sprite( particleMaterial );
-        particle.position.copy( intersects[ 0 ].point );
-        console.log(particle.position);
-        particle.scale.x = particle.scale.y = 16;
-        scene.add( particle );
-      }
-    }
 
     // Add OrbitControls so that we can pan around with the mouse.
     controls = new THREE.OrbitControls(camera, renderer.domElement);
