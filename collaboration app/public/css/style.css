@@ -4,7 +4,7 @@
 
 body{
   background-color: none;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .renderZone{
