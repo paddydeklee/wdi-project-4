@@ -35,3 +35,7 @@ body{
   -moz-box-shadow: 11px 13px 44px -13px rgba(0,0,0,0.15);
   box-shadow: 11px 13px 44px -13px rgba(0,0,0,0.15);
 }
+
+.commentsSection{
+color: black;
+}

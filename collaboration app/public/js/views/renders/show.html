@@ -3,7 +3,13 @@
   <h3>{{ rendersShow.project.title }}</h3>
   <strong>File:</strong>
   <li>{{ rendersShow.file }}</li>
+  <div class="commentBox" ng-click="reveal =!reveal">
+    <form id="new-project" ng-submit="projectsNew.create()" novalidate>
+      
+    </form>
+  </div>
   <div class="commentsSection">
 
   </div>
+
 </div>

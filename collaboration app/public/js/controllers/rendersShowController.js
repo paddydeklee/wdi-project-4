@@ -11,7 +11,7 @@ function RendersShowController(Project, $stateParams){
     vm.project = data.project;
     vm.file    = data.project.files[$stateParams.id];
     console.log(vm.file);
-  });
+
 
 // // **********GECKOEXAMPLE**********
   // Set up the scene, camera, and renderer as global variables.
@@ -63,7 +63,7 @@ function RendersShowController(Project, $stateParams){
 
     // Load in the mesh and add it to the scene.
     var loader = new THREE.JSONLoader();
-    loader.load( "/3Dmodels/treehouse_logo.js", function(geometry){
+    loader.load( vm.file, function(geometry){
       var material = new THREE.MeshLambertMaterial({color: 0x55B663});
       mesh = new THREE.Mesh(geometry, material);
       scene.add(mesh);
@@ -73,11 +73,9 @@ function RendersShowController(Project, $stateParams){
 
     // new raycaster to be activated on mouse click
     raycaster = new THREE.Raycaster();
-    console.log("Raycaster loaded", raycaster);
 
     // vector to be drawn from the mouse normal
     mouse = new THREE.Vector2();
-    console.log("mouse loaded", mouse);
 
     renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -101,7 +99,7 @@ function RendersShowController(Project, $stateParams){
     }
 
     function onDocumentMouseDown( event ) {
-      console.log("hello");
+      // console.log("hello");
       event.preventDefault();
       mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
       mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
@@ -113,21 +111,31 @@ function RendersShowController(Project, $stateParams){
       // finds the intersects between the raycaster and the intersected object
       var intersects = raycaster.intersectObjects( objects );
       if ( intersects.length > 0 ) {
+        console.log("show the comments box");
         intersects[ 0 ].object.material.color.setHex( Math.random() * 0xffffff );
-        console.log(intersects[0].object);
+        // console.log(intersects[0].object);
 
         var particle = new THREE.Sprite( particleMaterial );
         particle.material.color = new THREE.Color(0x0066CC);
         particle.position.copy( intersects[ 0 ].point );
-        console.log(particle.position);
+        // console.log(particle.position);
         particle.scale.x = particle.scale.y = particle.scale.z = 0.2;
         scene.add( particle );
 
-        // scene.children[latestSprite].push("Private Ryan");
-        latestSprite++;
-        console.log(latestSprite);
-        console.log(scene.children);
 
+        console.log(scene.children.length-1);
+
+        // scene.children[latestSprite].push("Private Ryan");
+        // latestSprite++;
+        // console.log(latestSprite);
+        var pos = scene.children[scene.children.length-1];
+        var stringPos = pos.toString();
+        console.log(scene);
+        $( ".commentsSection" ).append( "<br><strong>"+pos+"</strong><br>" );
+
+      }
+      else{
+        console.log("hide the comments box");
       }
     }
 
@@ -145,4 +153,5 @@ function RendersShowController(Project, $stateParams){
     renderer.render(scene, camera);
     controls.update();
   }
+    });
 }
