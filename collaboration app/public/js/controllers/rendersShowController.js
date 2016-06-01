@@ -6,24 +6,13 @@ RendersShowController.$inject = ['Project', '$stateParams'];
 function RendersShowController(Project, $stateParams){
   var vm = this;
 
+
+// The entire 3D functionality is inside this function to allow the file to be looked up from AWS (the data) console.log(data.project.files[0]);
   Project.get({id: $stateParams.project_id }).$promise.then(function(data){
-    // console.log(data.project);
     vm.project = data.project;
     vm.file    = data.project.files[$stateParams.id];
-  });
 
-
-
-
-
-
-
-
-
-
-
-
-// **********GECKOEXAMPLE**********
+// **********3D functionality based on GECKOEXAMPLE**********
   // Set up the scene, camera, and renderer as global variables.
   var scene, camera, renderer;
 
@@ -32,6 +21,7 @@ function RendersShowController(Project, $stateParams){
 
   // Sets up the scene.
   function init() {
+    // console.log(data);
 
     // Create the scene and set the scene size.
     scene = new THREE.Scene();
@@ -39,7 +29,7 @@ function RendersShowController(Project, $stateParams){
         HEIGHT = window.innerHeight;
 
     // Create a renderer and add it to the DOM.
-    renderer = new THREE.WebGLRenderer({antialias:true});
+    renderer = new THREE.WebGLRenderer({antialias:true,  alpha: true });
     renderer.setSize(WIDTH, HEIGHT);
     document.body.appendChild(renderer.domElement);
 
@@ -60,6 +50,7 @@ function RendersShowController(Project, $stateParams){
     // Set the background color of the scene.
     // renderer.setClearColorHex(0x333F47, 1);
     // renderer.setClearColorHex(0xff0000, 1);
+    // renderer.setClearColor( 0x000000, 0 ); // the default
 
     // Create a light, set its position, and add it to the scene.
     var light = new THREE.PointLight(0xffffff);
@@ -68,7 +59,7 @@ function RendersShowController(Project, $stateParams){
 
     // Load in the mesh and add it to the scene.
     var loader = new THREE.JSONLoader();
-    loader.load( "/3Dmodels/treehouse_logo.js", function(geometry){
+    loader.load( vm.file, function(geometry){
       var material = new THREE.MeshLambertMaterial({color: 0x55B663});
       mesh = new THREE.Mesh(geometry, material);
       scene.add(mesh);
@@ -79,7 +70,6 @@ function RendersShowController(Project, $stateParams){
 
   }
 
-
   // Renders the scene and updates the render as needed.
   function animate() {
 
@@ -89,25 +79,9 @@ function RendersShowController(Project, $stateParams){
     // Render the scene.
     renderer.render(scene, camera);
     controls.update();
-
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 // ********************
   // <script>
